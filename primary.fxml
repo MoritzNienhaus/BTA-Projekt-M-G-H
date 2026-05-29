@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Importiert die benötigten JavaFX Klassen -->
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<!--
+AnchorPane = Hauptcontainer der Szene
+
+prefWidth / prefHeight:
+Bestimmt die Fenstergröße.
+
+style:
+Setzt das Hintergrundbild des Spielfeldes.
+-->
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.mycompany.bierpong.PrimaryController"
+            prefWidth="1000"
+            prefHeight="700"
+            style="-fx-background-image: url('/com/mycompany/bierpong/BierPongTisch.jpeg');
+                   -fx-background-size: cover;
+                   -fx-background-position: center;">
+
+    <!--
+    Spieler 1
+
+    Circle = Kreisobjekt
+
+    fx:id:
+    Verbindet den Kreis mit dem Controller.
+
+    centerX / centerY:
+    Startposition des Kreises.
+
+    radius:
+    Größe des Spielers.
+
+    fill:
+    Farbe des Kreises.
+    -->
+    <Circle fx:id="player1"
+            centerX="300"
+            centerY="350"
+            radius="8"
+            fill="red"/>
+
+    <!-- Spieler 2 -->
+    <Circle fx:id="player2"
+            centerX="700"
+            centerY="350"
+            radius="8"
+            fill="blue"/>
+
+    <!--
+    ImageView zeigt ein Bild an.
+
+    fitWidth / fitHeight:
+    Größe des Bildes.
+
+    layoutX / layoutY:
+    Position des Bildes auf dem Spielfeld.
+    -->
+    <ImageView fitWidth="60"
+               fitHeight="60"
+               layoutX="130"
+               layoutY="450"
+               preserveRatio="true">
+
+        <!-- Lädt das Bild -->
+        <image>
+            <Image url="@BierPongBecher.png"/>
+        </image>
+
+    </ImageView>
+
+</AnchorPane>
