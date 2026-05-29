@@ -1,51 +1,110 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.mycompany</groupId>
-    <artifactId>mavenproject1</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>13</version>
-        </dependency>
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <release>11</release>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.4</version>
-                <configuration>
-                    <mainClass>com.mycompany.mavenproject1.App</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <!-- Default configuration for running -->
-                        <!-- Usage: mvn clean javafx:run -->
-                        <id>default-cli</id>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-</project>
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Importiert den AnchorPane Container.
+
+AnchorPane erlaubt freies Positionieren
+von Elementen.
+-->
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+VBox = Vertical Box
+
+Ordnet Elemente vertikal
+untereinander an.
+-->
+<?import javafx.scene.layout.VBox?>
+
+<!-- Importiert Textanzeige -->
+<?import javafx.scene.control.Label?>
+
+<!-- Importiert Button -->
+<?import javafx.scene.control.Button?>
+
+<!--
+Insets erzeugt Innenabstände
+(Padding).
+-->
+<?import javafx.geometry.Insets?>
+
+<!--
+Hauptcontainer der Szene.
+
+xmlns:
+Definiert die JavaFX Version.
+
+style:
+Setzt das Hintergrundbild.
+-->
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-image: url('/com/mycompany/bierpong/BierPongTisch.jpeg');
+                   -fx-background-size: cover;
+                   -fx-background-repeat: no-repeat;
+                   -fx-background-position: center;">
+
+    <!--
+    VBox Container.
+
+    alignment="CENTER"
+    Zentriert alle Elemente.
+
+    spacing="20.0"
+    Abstand zwischen den Elementen.
+
+    AnchorPane.topAnchor usw:
+    VBox wird an allen Seiten
+    des AnchorPane befestigt.
+    -->
+    <VBox alignment="CENTER"
+          spacing="20.0"
+          AnchorPane.topAnchor="0"
+          AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0">
+
+        <!--
+        children:
+        Enthält alle Elemente
+        innerhalb der VBox.
+        -->
+        <children>
+
+            <!--
+            Label = einfache Textanzeige.
+            -->
+            <Label text="Secondary View"/>
+
+            <!--
+            Einfacher Button.
+
+            text:
+            Beschriftung des Buttons.
+
+            Aktuell ohne Funktion,
+            da kein Controller benutzt wird.
+            -->
+            <Button text="Back to Primary"/>
+
+        </children>
+
+        <!--
+        padding:
+        Innenabstand innerhalb
+        der VBox.
+
+        top/right/bottom/left
+        bestimmen die Abstände.
+        -->
+        <padding>
+            <Insets top="20.0"
+                    right="20.0"
+                    bottom="20.0"
+                    left="20.0"/>
+        </padding>
+
+    </VBox>
+
+</AnchorPane>
