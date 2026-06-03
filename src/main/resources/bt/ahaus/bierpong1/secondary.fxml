@@ -1,0 +1,110 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Importiert den AnchorPane Container.
+
+AnchorPane erlaubt freies Positionieren
+von Elementen.
+-->
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+VBox = Vertical Box
+
+Ordnet Elemente vertikal
+untereinander an.
+-->
+<?import javafx.scene.layout.VBox?>
+
+<!-- Importiert Textanzeige -->
+<?import javafx.scene.control.Label?>
+
+<!-- Importiert Button -->
+<?import javafx.scene.control.Button?>
+
+<!--
+Insets erzeugt Innenabstände
+(Padding).
+-->
+<?import javafx.geometry.Insets?>
+
+<!--
+Hauptcontainer der Szene.
+
+xmlns:
+Definiert die JavaFX Version.
+
+style:
+Setzt das Hintergrundbild.
+-->
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-image: url('/com/mycompany/bierpong/BierPongTisch.jpeg');
+                   -fx-background-size: cover;
+                   -fx-background-repeat: no-repeat;
+                   -fx-background-position: center;">
+
+    <!--
+    VBox Container.
+
+    alignment="CENTER"
+    Zentriert alle Elemente.
+
+    spacing="20.0"
+    Abstand zwischen den Elementen.
+
+    AnchorPane.topAnchor usw:
+    VBox wird an allen Seiten
+    des AnchorPane befestigt.
+    -->
+    <VBox alignment="CENTER"
+          spacing="20.0"
+          AnchorPane.topAnchor="0"
+          AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0">
+
+        <!--
+        children:
+        Enthält alle Elemente
+        innerhalb der VBox.
+        -->
+        <children>
+
+            <!--
+            Label = einfache Textanzeige.
+            -->
+            <Label text="Secondary View"/>
+
+            <!--
+            Einfacher Button.
+
+            text:
+            Beschriftung des Buttons.
+
+            Aktuell ohne Funktion,
+            da kein Controller benutzt wird.
+            -->
+            <Button text="Back to Primary"/>
+
+        </children>
+
+        <!--
+        padding:
+        Innenabstand innerhalb
+        der VBox.
+
+        top/right/bottom/left
+        bestimmen die Abstände.
+        -->
+        <padding>
+            <Insets top="20.0"
+                    right="20.0"
+                    bottom="20.0"
+                    left="20.0"/>
+        </padding>
+
+    </VBox>
+
+</AnchorPane>

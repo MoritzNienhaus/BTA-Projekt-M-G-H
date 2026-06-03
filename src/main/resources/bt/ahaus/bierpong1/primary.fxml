@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="bt.ahaus.bierpong1.PrimaryController"
+            prefWidth="1000"
+            prefHeight="700"
+            style="-fx-background-image: url('/bt/ahaus/bierpong1/BierPongTisch.jpeg');
+                   -fx-background-size: cover;
+                   -fx-background-position: center;">
+
+    <Circle fx:id="player1"
+            centerX="300"
+            centerY="350"
+            radius="8"
+            fill="pink"/>
+
+    <Circle fx:id="player2"
+            centerX="700"
+            centerY="350"
+            radius="8"
+            fill="blue"/>
+
+    <ImageView fitWidth="60"
+               fitHeight="60"
+               layoutX="130"
+               layoutY="450"
+               preserveRatio="true">
+
+        <image>
+            <Image url="@BierPongBecher.png"/>
+        </image>
+
+    </ImageView>
+
+</AnchorPane>
