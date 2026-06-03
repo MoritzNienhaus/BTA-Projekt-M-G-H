@@ -1,0 +1,8 @@
+module bt.ahaus.bierpong {
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires com.almasb.fxgl.all;
+
+    opens bt.ahaus.bierpong to javafx.fxml;
+    exports bt.ahaus.bierpong;
+}
