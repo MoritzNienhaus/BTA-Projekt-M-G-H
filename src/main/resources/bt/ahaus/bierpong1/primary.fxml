@@ -5,37 +5,75 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171"
+<AnchorPane fx:id="gamePane"
+            xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="bt.ahaus.bierpong1.PrimaryController"
-            prefWidth="1000"
-            prefHeight="700"
-            style="-fx-background-image: url('/bt/ahaus/bierpong1/BierPongTisch.jpeg');
-                   -fx-background-size: cover;
-                   -fx-background-position: center;">
+            fx:controller="bt.ahaus.bierpong1.PrimaryController">
 
-    <Circle fx:id="player1"
-            centerX="300"
-            centerY="350"
-            radius="8"
-            fill="pink"/>
-
-    <Circle fx:id="player2"
-            centerX="700"
-            centerY="350"
-            radius="8"
-            fill="purple"/>
-
-    <ImageView fitWidth="60"
-               fitHeight="60"
-               layoutX="130"
-               layoutY="450"
-               preserveRatio="true">
-
+    <!-- HINTERGRUND (FULLSCREEN) -->
+    <ImageView fx:id="backgroundImage"
+               preserveRatio="false"
+               AnchorPane.topAnchor="0"
+               AnchorPane.bottomAnchor="0"
+               AnchorPane.leftAnchor="0"
+               AnchorPane.rightAnchor="0">
         <image>
-            <Image url="@BierPongBecher.png"/>
+            <Image url="@BierPongTisch.png"/>
         </image>
+    </ImageView>
 
+    <!-- SPIELER -->
+    <Circle fx:id="player1" centerX="300" centerY="350" radius="10" fill="pink"/>
+    <Circle fx:id="player2" centerX="700" centerY="350" radius="10" fill="purple"/>
+
+    <!-- LINKES TEAM (6 CUPS) -->
+    <ImageView fx:id="cupL1" layoutX="120" layoutY="520" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
+    </ImageView>
+
+    <ImageView fx:id="cupL2" layoutX="100" layoutY="450" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
+    </ImageView>
+
+    <ImageView fx:id="cupL3" layoutX="120" layoutY="380" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
+    </ImageView>
+
+    <ImageView fx:id="cupL4" layoutX="160" layoutY="310" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
+    </ImageView>
+
+    <ImageView fx:id="cupL5" layoutX="200" layoutY="380" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
+    </ImageView>
+
+    <ImageView fx:id="cupL6" layoutX="220" layoutY="450" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
+    </ImageView>
+
+    <!-- RECHTES TEAM (6 CUPS) -->
+    <ImageView fx:id="cupR1" layoutX="880" layoutY="520" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
+    </ImageView>
+
+    <ImageView fx:id="cupR2" layoutX="900" layoutY="450" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
+    </ImageView>
+
+    <ImageView fx:id="cupR3" layoutX="880" layoutY="380" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
+    </ImageView>
+
+    <ImageView fx:id="cupR4" layoutX="840" layoutY="310" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
+    </ImageView>
+
+    <ImageView fx:id="cupR5" layoutX="820" layoutY="380" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
+    </ImageView>
+
+    <ImageView fx:id="cupR6" layoutX="800" layoutY="450" fitWidth="55" fitHeight="55">
+        <image><Image url="@BierPongBecher.png"/></image>
     </ImageView>
 
 </AnchorPane>
