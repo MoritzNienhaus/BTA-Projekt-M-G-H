@@ -1,7 +1,8 @@
 package bt.ahaus.bierpong1;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
@@ -20,9 +21,15 @@ public class PrimaryController {
     @FXML
     private Circle player2;
 
-    private final double speed = 5;
+    @FXML
+    private ImageView cup;
 
+    private final double speed = 5;
     private final Set<KeyCode> pressedKeys = new HashSet<>();
+
+    // relative Position vom Becher
+    private final double cupRelX = 0.7;
+    private final double cupRelY = 0.5;
 
     @FXML
     public void initialize() {
@@ -31,15 +38,8 @@ public class PrimaryController {
 
             if (newScene != null) {
 
-                Scene scene = newScene;
-
-                scene.setOnKeyPressed(event ->
-                        pressedKeys.add(event.getCode())
-                );
-
-                scene.setOnKeyReleased(event ->
-                        pressedKeys.remove(event.getCode())
-                );
+                newScene.setOnKeyPressed(e -> pressedKeys.add(e.getCode()));
+                newScene.setOnKeyReleased(e -> pressedKeys.remove(e.getCode()));
 
                 startGameLoop();
             }
@@ -50,24 +50,24 @@ public class PrimaryController {
 
         Thread gameThread = new Thread(() -> {
 
-            try {
+            while (true) {
 
-                while (true) {
+                Platform.runLater(() -> {
 
-                    javafx.application.Platform.runLater(() -> {
+                    movePlayers();
+                    handleCollision();
 
-                        movePlayers();
-                        handleCollision();
-                        wallCollision(player1);
-                        wallCollision(player2);
+                    wallCollision(player1);
+                    wallCollision(player2);
 
-                    });
+                    updateCup();
+                });
 
+                try {
                     Thread.sleep(16);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         });
 
@@ -77,41 +77,23 @@ public class PrimaryController {
 
     private void movePlayers() {
 
-        // Spieler 1 (WASD)
-
-        if (pressedKeys.contains(KeyCode.W)) {
+        if (pressedKeys.contains(KeyCode.W))
             player1.setCenterY(player1.getCenterY() - speed);
-        }
-
-        if (pressedKeys.contains(KeyCode.S)) {
+        if (pressedKeys.contains(KeyCode.S))
             player1.setCenterY(player1.getCenterY() + speed);
-        }
-
-        if (pressedKeys.contains(KeyCode.A)) {
+        if (pressedKeys.contains(KeyCode.A))
             player1.setCenterX(player1.getCenterX() - speed);
-        }
-
-        if (pressedKeys.contains(KeyCode.D)) {
+        if (pressedKeys.contains(KeyCode.D))
             player1.setCenterX(player1.getCenterX() + speed);
-        }
 
-        // Spieler 2 (Pfeiltasten)
-
-        if (pressedKeys.contains(KeyCode.UP)) {
+        if (pressedKeys.contains(KeyCode.UP))
             player2.setCenterY(player2.getCenterY() - speed);
-        }
-
-        if (pressedKeys.contains(KeyCode.DOWN)) {
+        if (pressedKeys.contains(KeyCode.DOWN))
             player2.setCenterY(player2.getCenterY() + speed);
-        }
-
-        if (pressedKeys.contains(KeyCode.LEFT)) {
+        if (pressedKeys.contains(KeyCode.LEFT))
             player2.setCenterX(player2.getCenterX() - speed);
-        }
-
-        if (pressedKeys.contains(KeyCode.RIGHT)) {
+        if (pressedKeys.contains(KeyCode.RIGHT))
             player2.setCenterX(player2.getCenterX() + speed);
-        }
     }
 
     private void handleCollision() {
@@ -130,37 +112,53 @@ public class PrimaryController {
             double nx = dx / distance;
             double ny = dy / distance;
 
-            double knockback = overlap / 2 + 5;
+            double push = overlap / 2 + 5;
 
-            player1.setCenterX(player1.getCenterX() + nx * knockback);
-            player1.setCenterY(player1.getCenterY() + ny * knockback);
+            player1.setCenterX(player1.getCenterX() + nx * push);
+            player1.setCenterY(player1.getCenterY() + ny * push);
 
-            player2.setCenterX(player2.getCenterX() - nx * knockback);
-            player2.setCenterY(player2.getCenterY() - ny * knockback);
+            player2.setCenterX(player2.getCenterX() - nx * push);
+            player2.setCenterY(player2.getCenterY() - ny * push);
         }
     }
 
     private void wallCollision(Circle player) {
 
-    double radius = player.getRadius();
+        double radius = player.getRadius();
 
-    double width = player.getScene().getWidth();
-    double height = player.getScene().getHeight();
+        double width = gamePane.getWidth();
+        double height = gamePane.getHeight();
 
-    if (player.getCenterX() < radius) {
-        player.setCenterX(radius);
+        if (width <= 0 || height <= 0) return;
+
+        if (player.getCenterX() < radius)
+            player.setCenterX(radius);
+
+        if (player.getCenterX() > width - radius)
+            player.setCenterX(width - radius);
+
+        if (player.getCenterY() < radius)
+            player.setCenterY(radius);
+
+        if (player.getCenterY() > height - radius)
+            player.setCenterY(height - radius);
     }
 
-    if (player.getCenterX() > width - radius) {
-        player.setCenterX(width - radius);
-    }
+    private void updateCup() {
 
-    if (player.getCenterY() < radius) {
-        player.setCenterY(radius);
-    }
+        double width = gamePane.getWidth();
+        double height = gamePane.getHeight();
 
-    if (player.getCenterY() > height - radius) {
-        player.setCenterY(height - radius);
+        if (width <= 0 || height <= 0) return;
+
+        // Position bleibt relativ
+        cup.setLayoutX(width * cupRelX - cup.getFitWidth() / 2);
+        cup.setLayoutY(height * cupRelY - cup.getFitHeight() / 2);
+
+        // Skalierung
+        double scale = width / 1000.0;
+
+        cup.setFitWidth(60 * scale);
+        cup.setFitHeight(60 * scale);
     }
-}
 }
