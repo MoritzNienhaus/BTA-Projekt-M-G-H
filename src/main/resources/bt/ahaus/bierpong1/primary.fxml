@@ -27,27 +27,27 @@
     <Circle fx:id="player2" centerX="700" centerY="350" radius="10" fill="purple"/>
 
 <!-- LINKES TEAM -->
-<ImageView fx:id="cupL1" layoutX="350" layoutY="560" fitWidth="100" fitHeight="100">
+<ImageView fx:id="cupL1" layoutX="270" layoutY="520" fitWidth="100" fitHeight="100">
     <image><Image url="@BierPongBecher.png"/></image>
 </ImageView>
 
-<ImageView fx:id="cupL2" layoutX="350" layoutY="640" fitWidth="100" fitHeight="100">
+<ImageView fx:id="cupL2" layoutX="250" layoutY="580" fitWidth="100" fitHeight="100">
     <image><Image url="@BierPongBecher.png"/></image>
 </ImageView>
 
-<ImageView fx:id="cupL3" layoutX="350" layoutY="720" fitWidth="100" fitHeight="100">
+<ImageView fx:id="cupL3" layoutX="230" layoutY="640" fitWidth="100" fitHeight="100">
     <image><Image url="@BierPongBecher.png"/></image>
 </ImageView>
 
-<ImageView fx:id="cupL4" layoutX="420" layoutY="600" fitWidth="100" fitHeight="100">
+<ImageView fx:id="cupL4" layoutX="345" layoutY="550" fitWidth="100" fitHeight="100">
     <image><Image url="@BierPongBecher.png"/></image>
 </ImageView>
 
-<ImageView fx:id="cupL5" layoutX="420" layoutY="680" fitWidth="100" fitHeight="100">
+<ImageView fx:id="cupL5" layoutX="325" layoutY="610" fitWidth="100" fitHeight="100">
     <image><Image url="@BierPongBecher.png"/></image>
 </ImageView>
 
-<ImageView fx:id="cupL6" layoutX="520" layoutY="640" fitWidth="100" fitHeight="100">
+<ImageView fx:id="cupL6" layoutX="420" layoutY="580" fitWidth="100" fitHeight="100">
     <image><Image url="@BierPongBecher.png"/></image>
 </ImageView>
 
@@ -64,15 +64,15 @@
     <image><Image url="@BierPongBecher.png"/></image>
 </ImageView>
 
-<ImageView fx:id="cupR4" layoutX="1175" layoutY="550" fitWidth="100" fitHeight="100">
+<ImageView fx:id="cupR4" layoutX="1225" layoutY="550" fitWidth="100" fitHeight="100">
     <image><Image url="@BierPongBecher.png"/></image>
 </ImageView>
 
-<ImageView fx:id="cupR5" layoutX="1200" layoutY="610" fitWidth="100" fitHeight="100">
+<ImageView fx:id="cupR5" layoutX="1245" layoutY="610" fitWidth="100" fitHeight="100">
     <image><Image url="@BierPongBecher.png"/></image>
 </ImageView>
 
-<ImageView fx:id="cupR6" layoutX="1150" layoutY="640" fitWidth="100" fitHeight="100">
+<ImageView fx:id="cupR6" layoutX="1150" layoutY="580" fitWidth="100" fitHeight="100">
     <image><Image url="@BierPongBecher.png"/></image>
 </ImageView>
 
