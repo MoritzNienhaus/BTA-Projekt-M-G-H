@@ -24,7 +24,7 @@
             centerX="700"
             centerY="350"
             radius="8"
-            fill="blue"/>
+            fill="purple"/>
 
     <ImageView fitWidth="60"
                fitHeight="60"

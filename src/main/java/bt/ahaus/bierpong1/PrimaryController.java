@@ -3,12 +3,16 @@ package bt.ahaus.bierpong1;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class PrimaryController {
+
+    @FXML
+    private AnchorPane gamePane;
 
     @FXML
     private Circle player1;
@@ -56,10 +60,10 @@ public class PrimaryController {
                         handleCollision();
                         wallCollision(player1);
                         wallCollision(player2);
+
                     });
 
                     Thread.sleep(16);
-
                 }
 
             } catch (InterruptedException e) {
@@ -72,6 +76,8 @@ public class PrimaryController {
     }
 
     private void movePlayers() {
+
+        // Spieler 1 (WASD)
 
         if (pressedKeys.contains(KeyCode.W)) {
             player1.setCenterY(player1.getCenterY() - speed);
@@ -88,6 +94,8 @@ public class PrimaryController {
         if (pressedKeys.contains(KeyCode.D)) {
             player1.setCenterX(player1.getCenterX() + speed);
         }
+
+        // Spieler 2 (Pfeiltasten)
 
         if (pressedKeys.contains(KeyCode.UP)) {
             player2.setCenterY(player2.getCenterY() - speed);
@@ -134,25 +142,25 @@ public class PrimaryController {
 
     private void wallCollision(Circle player) {
 
-        double radius = player.getRadius();
+    double radius = player.getRadius();
 
-        double width = 1000;
-        double height = 700;
+    double width = player.getScene().getWidth();
+    double height = player.getScene().getHeight();
 
-        if (player.getCenterX() < radius) {
-            player.setCenterX(radius + 10);
-        }
-
-        if (player.getCenterX() > width - radius) {
-            player.setCenterX(width - radius - 10);
-        }
-
-        if (player.getCenterY() < radius) {
-            player.setCenterY(radius + 10);
-        }
-
-        if (player.getCenterY() > height - radius) {
-            player.setCenterY(height - radius - 10);
-        }
+    if (player.getCenterX() < radius) {
+        player.setCenterX(radius);
     }
+
+    if (player.getCenterX() > width - radius) {
+        player.setCenterX(width - radius);
+    }
+
+    if (player.getCenterY() < radius) {
+        player.setCenterY(radius);
+    }
+
+    if (player.getCenterY() > height - radius) {
+        player.setCenterY(height - radius);
+    }
+}
 }
