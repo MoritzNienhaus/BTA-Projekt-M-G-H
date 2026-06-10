@@ -26,54 +26,54 @@
     <Circle fx:id="player1" centerX="300" centerY="350" radius="10" fill="pink"/>
     <Circle fx:id="player2" centerX="700" centerY="350" radius="10" fill="purple"/>
 
-    <!-- LINKES TEAM (6 CUPS) -->
-    <ImageView fx:id="cupL1" layoutX="120" layoutY="520" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<!-- LINKES TEAM -->
+<ImageView fx:id="cupL1" layoutX="350" layoutY="560" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
-    <ImageView fx:id="cupL2" layoutX="100" layoutY="450" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<ImageView fx:id="cupL2" layoutX="350" layoutY="640" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
-    <ImageView fx:id="cupL3" layoutX="120" layoutY="380" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<ImageView fx:id="cupL3" layoutX="350" layoutY="720" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
-    <ImageView fx:id="cupL4" layoutX="160" layoutY="310" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<ImageView fx:id="cupL4" layoutX="420" layoutY="600" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
-    <ImageView fx:id="cupL5" layoutX="200" layoutY="380" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<ImageView fx:id="cupL5" layoutX="420" layoutY="680" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
-    <ImageView fx:id="cupL6" layoutX="220" layoutY="450" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<ImageView fx:id="cupL6" layoutX="520" layoutY="640" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
-    <!-- RECHTES TEAM (6 CUPS) -->
-    <ImageView fx:id="cupR1" layoutX="880" layoutY="520" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<!-- RECHTES TEAM -->
+<ImageView fx:id="cupR1" layoutX="1300" layoutY="520" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
-    <ImageView fx:id="cupR2" layoutX="900" layoutY="450" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<ImageView fx:id="cupR2" layoutX="1320" layoutY="580" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
-    <ImageView fx:id="cupR3" layoutX="880" layoutY="380" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<ImageView fx:id="cupR3" layoutX="1340" layoutY="640" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
-    <ImageView fx:id="cupR4" layoutX="840" layoutY="310" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<ImageView fx:id="cupR4" layoutX="1175" layoutY="550" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
-    <ImageView fx:id="cupR5" layoutX="820" layoutY="380" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<ImageView fx:id="cupR5" layoutX="1200" layoutY="610" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
-    <ImageView fx:id="cupR6" layoutX="800" layoutY="450" fitWidth="55" fitHeight="55">
-        <image><Image url="@BierPongBecher.png"/></image>
-    </ImageView>
+<ImageView fx:id="cupR6" layoutX="1150" layoutY="640" fitWidth="100" fitHeight="100">
+    <image><Image url="@BierPongBecher.png"/></image>
+</ImageView>
 
 </AnchorPane>
