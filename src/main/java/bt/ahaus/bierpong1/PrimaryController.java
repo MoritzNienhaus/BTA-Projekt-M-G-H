@@ -29,6 +29,12 @@ public class PrimaryController {
                 newScene.setOnKeyPressed(e -> keys.add(e.getCode()));
                 newScene.setOnKeyReleased(e -> keys.remove(e.getCode()));
 
+                // 🔥 wichtig: Pane füllt immer Fenster
+                Platform.runLater(() -> {
+                    gamePane.prefWidthProperty().bind(newScene.widthProperty());
+                    gamePane.prefHeightProperty().bind(newScene.heightProperty());
+                });
+
                 startLoop();
             }
         });
@@ -41,6 +47,7 @@ public class PrimaryController {
             while (true) {
 
                 Platform.runLater(() -> {
+
                     movePlayers();
                     handleCollision();
                     wallCollision(player1);
@@ -49,7 +56,7 @@ public class PrimaryController {
 
                 try {
                     Thread.sleep(16);
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -61,15 +68,17 @@ public class PrimaryController {
 
     private void movePlayers() {
 
-        if (keys.contains(KeyCode.W)) player1.setCenterY(player1.getCenterY() - speed);
-        if (keys.contains(KeyCode.S)) player1.setCenterY(player1.getCenterY() + speed);
-        if (keys.contains(KeyCode.A)) player1.setCenterX(player1.getCenterX() - speed);
-        if (keys.contains(KeyCode.D)) player1.setCenterX(player1.getCenterX() + speed);
+        double dynamicSpeed = gamePane.getWidth() * 0.005;
 
-        if (keys.contains(KeyCode.UP)) player2.setCenterY(player2.getCenterY() - speed);
-        if (keys.contains(KeyCode.DOWN)) player2.setCenterY(player2.getCenterY() + speed);
-        if (keys.contains(KeyCode.LEFT)) player2.setCenterX(player2.getCenterX() - speed);
-        if (keys.contains(KeyCode.RIGHT)) player2.setCenterX(player2.getCenterX() + speed);
+        if (keys.contains(KeyCode.W)) player1.setCenterY(player1.getCenterY() - dynamicSpeed);
+        if (keys.contains(KeyCode.S)) player1.setCenterY(player1.getCenterY() + dynamicSpeed);
+        if (keys.contains(KeyCode.A)) player1.setCenterX(player1.getCenterX() - dynamicSpeed);
+        if (keys.contains(KeyCode.D)) player1.setCenterX(player1.getCenterX() + dynamicSpeed);
+
+        if (keys.contains(KeyCode.UP)) player2.setCenterY(player2.getCenterY() - dynamicSpeed);
+        if (keys.contains(KeyCode.DOWN)) player2.setCenterY(player2.getCenterY() + dynamicSpeed);
+        if (keys.contains(KeyCode.LEFT)) player2.setCenterX(player2.getCenterX() - dynamicSpeed);
+        if (keys.contains(KeyCode.RIGHT)) player2.setCenterX(player2.getCenterX() + dynamicSpeed);
     }
 
     private void handleCollision() {
@@ -98,12 +107,12 @@ public class PrimaryController {
 
     private void wallCollision(Circle p) {
 
-        double r = p.getRadius();
-
         double w = gamePane.getWidth();
         double h = gamePane.getHeight();
 
         if (w <= 0 || h <= 0) return;
+
+        double r = p.getRadius();
 
         if (p.getCenterX() < r) p.setCenterX(r);
         if (p.getCenterX() > w - r) p.setCenterX(w - r);
