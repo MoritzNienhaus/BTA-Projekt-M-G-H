@@ -12,24 +12,16 @@ import java.util.Set;
 
 public class PrimaryController {
 
-    @FXML
-    private AnchorPane gamePane;
+    @FXML private AnchorPane gamePane;
 
-    @FXML
-    private Circle player1;
+    @FXML private Circle player1;
+    @FXML private Circle player2;
 
-    @FXML
-    private Circle player2;
-
-    @FXML
-    private ImageView cup;
+    @FXML private ImageView cupL1, cupL2, cupL3, cupL4, cupL5, cupL6;
+    @FXML private ImageView cupR1, cupR2, cupR3, cupR4, cupR5, cupR6;
 
     private final double speed = 5;
-    private final Set<KeyCode> pressedKeys = new HashSet<>();
-
-    // relative Position vom Becher
-    private final double cupRelX = 0.7;
-    private final double cupRelY = 0.5;
+    private final Set<KeyCode> keys = new HashSet<>();
 
     @FXML
     public void initialize() {
@@ -38,17 +30,17 @@ public class PrimaryController {
 
             if (newScene != null) {
 
-                newScene.setOnKeyPressed(e -> pressedKeys.add(e.getCode()));
-                newScene.setOnKeyReleased(e -> pressedKeys.remove(e.getCode()));
+                newScene.setOnKeyPressed(e -> keys.add(e.getCode()));
+                newScene.setOnKeyReleased(e -> keys.remove(e.getCode()));
 
-                startGameLoop();
+                startLoop();
             }
         });
     }
 
-    private void startGameLoop() {
+    private void startLoop() {
 
-        Thread gameThread = new Thread(() -> {
+        Thread t = new Thread(() -> {
 
             while (true) {
 
@@ -56,11 +48,9 @@ public class PrimaryController {
 
                     movePlayers();
                     handleCollision();
-
                     wallCollision(player1);
                     wallCollision(player2);
-
-                    updateCup();
+                    updateCups();
                 });
 
                 try {
@@ -71,29 +61,21 @@ public class PrimaryController {
             }
         });
 
-        gameThread.setDaemon(true);
-        gameThread.start();
+        t.setDaemon(true);
+        t.start();
     }
 
     private void movePlayers() {
 
-        if (pressedKeys.contains(KeyCode.W))
-            player1.setCenterY(player1.getCenterY() - speed);
-        if (pressedKeys.contains(KeyCode.S))
-            player1.setCenterY(player1.getCenterY() + speed);
-        if (pressedKeys.contains(KeyCode.A))
-            player1.setCenterX(player1.getCenterX() - speed);
-        if (pressedKeys.contains(KeyCode.D))
-            player1.setCenterX(player1.getCenterX() + speed);
+        if (keys.contains(KeyCode.W)) player1.setCenterY(player1.getCenterY() - speed);
+        if (keys.contains(KeyCode.S)) player1.setCenterY(player1.getCenterY() + speed);
+        if (keys.contains(KeyCode.A)) player1.setCenterX(player1.getCenterX() - speed);
+        if (keys.contains(KeyCode.D)) player1.setCenterX(player1.getCenterX() + speed);
 
-        if (pressedKeys.contains(KeyCode.UP))
-            player2.setCenterY(player2.getCenterY() - speed);
-        if (pressedKeys.contains(KeyCode.DOWN))
-            player2.setCenterY(player2.getCenterY() + speed);
-        if (pressedKeys.contains(KeyCode.LEFT))
-            player2.setCenterX(player2.getCenterX() - speed);
-        if (pressedKeys.contains(KeyCode.RIGHT))
-            player2.setCenterX(player2.getCenterX() + speed);
+        if (keys.contains(KeyCode.UP)) player2.setCenterY(player2.getCenterY() - speed);
+        if (keys.contains(KeyCode.DOWN)) player2.setCenterY(player2.getCenterY() + speed);
+        if (keys.contains(KeyCode.LEFT)) player2.setCenterX(player2.getCenterX() - speed);
+        if (keys.contains(KeyCode.RIGHT)) player2.setCenterX(player2.getCenterX() + speed);
     }
 
     private void handleCollision() {
@@ -101,16 +83,16 @@ public class PrimaryController {
         double dx = player1.getCenterX() - player2.getCenterX();
         double dy = player1.getCenterY() - player2.getCenterY();
 
-        double distance = Math.sqrt(dx * dx + dy * dy);
+        double dist = Math.sqrt(dx * dx + dy * dy);
 
-        double minDistance = player1.getRadius() + player2.getRadius();
+        double min = player1.getRadius() + player2.getRadius();
 
-        if (distance < minDistance && distance != 0) {
+        if (dist < min && dist != 0) {
 
-            double overlap = minDistance - distance;
+            double overlap = min - dist;
 
-            double nx = dx / distance;
-            double ny = dy / distance;
+            double nx = dx / dist;
+            double ny = dy / dist;
 
             double push = overlap / 2 + 5;
 
@@ -122,43 +104,55 @@ public class PrimaryController {
         }
     }
 
-    private void wallCollision(Circle player) {
+    private void wallCollision(Circle p) {
 
-        double radius = player.getRadius();
+        double r = p.getRadius();
 
-        double width = gamePane.getWidth();
-        double height = gamePane.getHeight();
+        double w = gamePane.getWidth();
+        double h = gamePane.getHeight();
 
-        if (width <= 0 || height <= 0) return;
+        if (w <= 0 || h <= 0) return;
 
-        if (player.getCenterX() < radius)
-            player.setCenterX(radius);
+        if (p.getCenterX() < r) p.setCenterX(r);
+        if (p.getCenterX() > w - r) p.setCenterX(w - r);
 
-        if (player.getCenterX() > width - radius)
-            player.setCenterX(width - radius);
-
-        if (player.getCenterY() < radius)
-            player.setCenterY(radius);
-
-        if (player.getCenterY() > height - radius)
-            player.setCenterY(height - radius);
+        if (p.getCenterY() < r) p.setCenterY(r);
+        if (p.getCenterY() > h - r) p.setCenterY(h - r);
     }
 
-    private void updateCup() {
+    private void updateCups() {
 
-        double width = gamePane.getWidth();
-        double height = gamePane.getHeight();
+        double w = gamePane.getWidth();
+        double h = gamePane.getHeight();
 
-        if (width <= 0 || height <= 0) return;
+        if (w <= 0 || h <= 0) return;
 
-        // Position bleibt relativ
-        cup.setLayoutX(width * cupRelX - cup.getFitWidth() / 2);
-        cup.setLayoutY(height * cupRelY - cup.getFitHeight() / 2);
+        double scale = w / 1000.0;
+        double size = 60 * scale;
 
-        // Skalierung
-        double scale = width / 1000.0;
+        // LINKS
+        place(cupL1, w * 0.15, h * 0.35, size);
+        place(cupL2, w * 0.12, h * 0.45, size);
+        place(cupL3, w * 0.09, h * 0.55, size);
+        place(cupL4, w * 0.18, h * 0.45, size);
+        place(cupL5, w * 0.15, h * 0.55, size);
+        place(cupL6, w * 0.12, h * 0.65, size);
 
-        cup.setFitWidth(60 * scale);
-        cup.setFitHeight(60 * scale);
+        // RECHTS
+        place(cupR1, w * 0.85, h * 0.35, size);
+        place(cupR2, w * 0.88, h * 0.45, size);
+        place(cupR3, w * 0.91, h * 0.55, size);
+        place(cupR4, w * 0.82, h * 0.45, size);
+        place(cupR5, w * 0.85, h * 0.55, size);
+        place(cupR6, w * 0.88, h * 0.65, size);
+    }
+
+    private void place(ImageView c, double x, double y, double size) {
+
+        c.setFitWidth(size);
+        c.setFitHeight(size);
+
+        c.setLayoutX(x - size / 2);
+        c.setLayoutY(y - size / 2);
     }
 }
