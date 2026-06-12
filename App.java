@@ -1,57 +1,41 @@
+package bt.ahaus.bierpong1;
 
-package com.mycompany.bierpong;
-
-// Importiert JavaFX Klassen
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-// Hauptklasse des Programms
 public class App extends Application {
 
-    /*
-    Diese Methode startet automatisch
-    beim Programmstart.
-    */
+    private static Scene scene;
+
     @Override
     public void start(Stage stage) throws Exception {
-
-        /*
-        Lädt die Datei primary.fxml.
-
-        FXMLLoader erstellt daraus
-        die sichtbare Oberfläche.
-        */
-        Parent root = FXMLLoader.load(
-                App.class.getResource("primary.fxml")
-        );
-
-        /*
-        Erstellt die Szene.
-
-        root = Inhalt
-        1000 x 700 = Fenstergröße
-        */
-        Scene scene = new Scene(root, 1000, 700);
-
-        // Titel des Fensters
-        stage.setTitle("Bier Pong Game");
-
-        // Setzt die Szene
+        Parent root = loadFXML("start");
+        scene = new Scene(root);
         stage.setScene(scene);
-
-        // Zeigt das Fenster an
+        stage.setX(0);
+        stage.setY(0);
+        stage.setWidth(Screen.getPrimary().getBounds().getWidth());
+        stage.setHeight(Screen.getPrimary().getBounds().getHeight());
+        stage.setMaximized(true);
+        stage.setResizable(true);
+        stage.setFullScreenExitHint("");
         stage.show();
     }
 
-    /*
-    Startpunkt des Programms.
-    */
-    public static void main(String[] args) {
+    public static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
 
-        // Startet JavaFX
+    private static Parent loadFXML(String fxml) throws IOException {
+        return FXMLLoader.load(App.class.getResource(fxml + ".fxml"));
+    }
+
+    public static void main(String[] args) {
         launch();
     }
 }
